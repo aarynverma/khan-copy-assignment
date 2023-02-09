@@ -1,0 +1,94 @@
+.navbar {
+  background-color: rgb(11, 33, 73);
+  border-bottom: solid #ffffff6d 0.1px;
+  .navbar-elements {
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+
+    .navbar-left-elements {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-search {
+      display: flex;
+      align-items: center;
+      padding-top: 10px !important;
+      padding-bottom: 10px !important;
+      margin-left: 32px !important;
+      margin-right: 32px !important;
+      width: 200px !important;
+      -moz-box-sizing: border-box !important;
+      box-sizing: border-box !important;
+      height: 100% !important;
+    }
+
+    .search-input::placeholder {
+      color: #ffffff;
+      opacity: 1;
+    }
+
+    .search-input::after {
+      border: none;
+    }
+
+    .search-input {
+      background-color: rgba(31, 51, 88, 0);
+      -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+      -webkit-box-direction: normal !important;
+      -webkit-box-orient: horizontal !important;
+      color: #ffffff !important;
+      font-family: inherit !important;
+      font-size: 15px !important;
+      font-weight: bold !important;
+      text-decoration: none !important;
+      border: none !important;
+      background-color: rgba(255, 255, 255, 0.37);
+      padding: 10px;
+      height: 40px !important;
+
+      display: flex !important;
+
+      border-radius: 4px !important;
+    }
+
+    .svg-khan {
+      color: #ffffff;
+    }
+    .navbar-user-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 100%;
+    }
+
+    .user-options-button {
+      -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+      cursor: pointer !important;
+      outline: none !important;
+      -webkit-align-items: center !important;
+      align-items: center !important;
+      display: -webkit-box !important;
+      display: -moz-box !important;
+      display: -ms-flexbox !important;
+      display: -webkit-flex !important;
+      display: flex !important;
+      height: 100% !important;
+      color: #ffffff !important;
+      font-family: inherit !important;
+      text-decoration: none !important;
+      font-size: 16px !important;
+      line-height: 20px !important;
+      font-weight: 700 !important;
+      padding-left: 1em;
+    }
+  }
+}

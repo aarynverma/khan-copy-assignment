@@ -1,0 +1,39 @@
+body {
+  font-family: "Lato", "Noto Sans", "Helvetica", "Corbel", sans-serif,
+    "Helvetica", "Corbel", sans-serif;
+  font-size: 14px;
+  margin: 0;
+  color: #444;
+  line-height: 1.4;
+}
+
+.main-scroll-section {
+  display: flex;
+  -webkit-box-direction: normal !important;
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-align: stretch !important;
+  -ms-flex-align: stretch !important;
+  -webkit-align-items: stretch !important;
+  align-items: stretch !important;
+  border-width: 0px !important;
+  border-style: solid !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  padding: 0px !important;
+  position: relative !important;
+  z-index: 0 !important;
+  min-height: 0px !important;
+  min-width: 0px !important;
+  -webkit-flex-direction: row !important;
+  -ms-flex-direction: row !important;
+  flex-direction: row !important;
+  width: 1200px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  margin: auto !important;
+}
