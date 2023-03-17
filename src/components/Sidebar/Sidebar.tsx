@@ -1,6 +1,7 @@
 import React from 'react'
 import './Sidebar.scss';
 import ProgressBar from '../ProgressBar/ProgressBar';
+import mainData from '../../Data/data.json';
 
 interface progressprops {
     data: {
@@ -12,29 +13,6 @@ interface progressprops {
 }
 
 const Sidebar: React.FunctionComponent<progressprops> = (data) => {
-    const lessons = [
-        {
-            id: 'abc',
-            name: 'Relations and functions'
-        },
-        {
-            id: 'klmansfkj',
-            name: 'Trigonometric functions'
-        },
-        { name: 'Complex numbers' },
-        { name: 'Linear inequalities', },
-        { name: 'Permutations and combinations' },
-        { name: 'Binomial theorem' },
-        { name: 'Sequence and series' },
-        { name: 'Straight lines' },
-        { name: 'Conic sections' },
-        { name: 'Introduction to three dimensional geometry' },
-        { name: 'Limits' },
-        { name: 'Derivatives' },
-        { name: 'Statistics' },
-        { name: 'Probability' }
-    ]
-
     return (
         <div className='sidebar'>
 
@@ -53,20 +31,27 @@ const Sidebar: React.FunctionComponent<progressprops> = (data) => {
                             Course summary
                         </h2>
                     </li>
-                    {lessons.map(lesson =>
-                        <li className='sidebar-content-li'>
-                            <span className='sidebar-content-li-description'>
-                                {lesson.name}
-                            </span>
-                            {data.data.progress.map((p) => {
-                                return (
-                                    <>
-                                        {lesson.id === p.id ? <ProgressBar progressPercentage={p.progress} /> : (<div className='li-content-bar'></div>)}
-                                    </>
-                                )
-                            })}
+                    {mainData.map(lesson => {
+                        const name = lesson.name.split(" ")[0]
+                        return (
+                            <li className='sidebar-content-li'>
+                                <span className='sidebar-content-li-description'>
+                                    <a href={`#${name}`}>
+                                        {lesson.name}
+                                    </a>
+                                </span>
+                                {data.data.progress.map((p) => {
+                                    return (
+                                        <>
+                                            {lesson.id === p.id ? <ProgressBar progressPercentage={p.progress} /> : (<div className='li-content-bar'></div>)}
+                                        </>
+                                    )
+                                })}
 
-                        </li>)}
+                            </li>)
+                    }
+                    )
+                    }
                 </span>
             </div>
 

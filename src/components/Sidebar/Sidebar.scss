@@ -1,41 +1,18 @@
 .sidebar {
-  -ms-flex-item-align: stretch !important;
-  -webkit-box-direction: normal !important;
-  -webkit-box-orient: vertical !important;
-  -webkit-box-align: stretch !important;
-  -ms-flex-align: stretch !important;
-  -webkit-align-items: stretch !important;
-  align-items: stretch !important;
-  border-width: 0px !important;
-  border-style: solid !important;
-  -moz-box-sizing: border-box !important;
-  box-sizing: border-box !important;
-  display: -webkit-box !important;
-  display: -moz-box !important;
-  display: -ms-flexbox !important;
-  display: -webkit-flex !important;
-  display: flex !important;
-  -webkit-flex-direction: column !important;
-  -ms-flex-direction: column !important;
-  flex-direction: column !important;
-  margin: 0px !important;
-  padding: 0px !important;
-  z-index: 0 !important;
-  min-height: 0px !important;
-  min-width: 0px !important;
-  position: relative !important;
-  -webkit-align-self: stretch !important;
-  align-self: stretch !important;
-  width: 308px !important;
-  overflow-y: auto !important;
+  width: 25%;
+  height: 18vh;
+  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px;
 
   .sidebar-section {
     width: 260px !important;
     margin: 0 auto !important;
-    padding-top: 32px !important;
+    padding: 32px 15px 32px 0 !important;
     padding-bottom: 32px !important;
     overflow: auto !important;
-    height: 200px !important;
+    height: 350px !important;
   }
   .sidebar-section-wrap {
     .sidebar-section-wrap-heading {
@@ -111,6 +88,17 @@
       line-height: 18px !important;
       padding-bottom: 5px;
       color: #21242c !important;
+
+      a {
+        color: #000000;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #555555;
+        text-decoration: none;
+        cursor: pointer;
+      }
     }
     .li-content-bar {
       z-index: 0 !important;
@@ -128,6 +116,6 @@
 
 @media screen and (max-width: 1199px) {
   .sidebar {
-    width: 268px !important;
+    width: 300px !important;
   }
 }

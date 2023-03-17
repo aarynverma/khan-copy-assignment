@@ -1,6 +1,14 @@
 .navbar {
   background-color: rgb(11, 33, 73);
   border-bottom: solid #ffffff6d 0.1px;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  float: left;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+
   .navbar-elements {
     color: #ffffff;
     display: flex;

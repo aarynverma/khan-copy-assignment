@@ -7,6 +7,10 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import MainSection from "./components/MainSection/MainSection";
 
 import { fetchArticleDetails, fetchProgressDetails } from "./Api/APIServices";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./Redux/store";
+import { setSubject } from "./Redux/SubjectDetail/SubjectDetail";
+import { progressResults } from "./Redux/ProgressBarDetails/ProgressBarDetails";
 
 interface cartProps {
   class: string;
@@ -33,38 +37,38 @@ interface progressprops {
 }
 
 function App() {
-  const [articleData, setArticleData] = useState<cartProps>({
-    class: "",
-    subject: "",
-    chapters: [
-      {
-        annotation: "",
-        name: "",
-        points_to_earn: 0,
-        id: "",
-        topics: [
-          {
-            annotation: "",
-            name: "",
-            points_to_earn: 0,
-            id: "",
-          },
-        ],
-      },
-    ],
-  });
+  // const [articleData, setArticleData] = useState<cartProps>({
+  //   class: "",
+  //   subject: "",
+  //   chapters: [
+  //     {
+  //       annotation: "",
+  //       name: "",
+  //       points_to_earn: 0,
+  //       id: "",
+  //       topics: [
+  //         {
+  //           annotation: "",
+  //           name: "",
+  //           points_to_earn: 0,
+  //           id: "",
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // });
 
-  const [progessData, setProgessData] = useState<progressprops>({
-    progress: [{ id: "", progress: 0 }],
-  });
+  const chapters = useSelector((state: RootState) => state.Subject);
+  const progressResultState = useSelector((state: RootState) => state.ProgressBarData);
+  const dispatch = useDispatch();
 
   const fetchPatientSets = async () => {
     try {
       const result = await fetchArticleDetails();
-      setArticleData(result);
+      dispatch(setSubject(result));
 
       const progressResult = await fetchProgressDetails();
-      setProgessData(progressResult);
+      dispatch(progressResults(progressResult));
     } catch (err) {
       console.log(err);
     }
@@ -78,8 +82,8 @@ function App() {
       <Navbar />
       <Header />
       <div className="main-scroll-section">
-        <Sidebar data={progessData} />
-        <MainSection data={articleData} />
+        <Sidebar data={progressResultState} />
+        <MainSection data={chapters} />
       </div>
     </>
   );

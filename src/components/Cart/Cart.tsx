@@ -15,27 +15,33 @@ interface ChapterCardProps {
             id: string;
         }[];
     };
+    name: {
+        id?: string;
+        name: string;
+    }
 }
 
 export const Cart: React.FunctionComponent<ChapterCardProps> = (
-    props
+    { data, name }
 ): JSX.Element => {
+    const cartId = name.name.split(" ")[0]
+
     return (
-        <div className="cart">
+        <div className="cart" id={`${cartId}`}>
             <div className="cart-content">
                 <div className="cart-content-head">
                     <div className="head-profile-img">
                         <img src={cartImg} alt="logo" className="cart-profile-img" />
-                        <span className="profile-img-heading">{props?.data.name}</span>
+                        <span className="profile-img-heading">{name?.name}</span>
                     </div>
                     <span>
-                        {1100 - props.data.points_to_earn}/1100 Mastery points
+                        {1100 - data.points_to_earn}/1100 Mastery points
                         <ProgressBar progressPercentage={10} />
                     </span>
                 </div>
                 <div className="cart-content-details">
                     <div className="cart-content-details-l1">
-                        {props.data.topics.map((item) => {
+                        {data.topics.map((item) => {
                             return (
                                 <div className="details-l1-data" key={item.id}>
                                     {item.name}

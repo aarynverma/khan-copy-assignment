@@ -1,6 +1,7 @@
 import React from 'react'
 import { Cart } from '../Cart/Cart'
 import './MainSection.scss';
+import mainData from '../../Data/data.json';
 
 interface cartProps {
     data: {
@@ -25,7 +26,10 @@ interface cartProps {
 const MainSection: React.FunctionComponent<cartProps> = (props) => {
     return (
         <div className='mainsection'>
-            <Cart data={props.data.chapters[0]} />
+            {mainData.map((cartData, id) => (
+                <Cart data={props.data.chapters[0]} name={cartData} />
+
+            ))}
         </div>
     )
 }
