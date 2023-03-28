@@ -41,6 +41,7 @@ const Navbar = () => {
                 <svg
                     className="svg-khan"
                     aria-hidden="true"
+                    data-icon="fire"
                     width="176px"
                     height="28px"
                     viewBox="0 0 176 28"
@@ -67,7 +68,7 @@ const Navbar = () => {
                     <circle fill="#ffffff" cx="13.66" cy="8.74" r="3"></circle>
                 </svg>
 
-                <div className="navbar-user-options">
+                <div data-testid="navbar-user-options" className="navbar-user-options">
                     <a className="user-options-button">Donate</a>
                     <a className="user-options-button">Login</a>
                     <a className="user-options-button">Sign Up</a>

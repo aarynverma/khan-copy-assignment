@@ -6,7 +6,7 @@ export interface ProgressBarState {
     progress: [{ id: string, progress: number }],
  }
 
-const initialState:  ProgressBarState ={
+const initialState:  ProgressBarState = {
     progress: [{ id: "", progress: 0 }],
   }
 

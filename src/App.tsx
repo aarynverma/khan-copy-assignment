@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
 import "./App.scss";
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
@@ -12,55 +11,17 @@ import { RootState } from "./Redux/store";
 import { setSubject } from "./Redux/SubjectDetail/SubjectDetail";
 import { progressResults } from "./Redux/ProgressBarDetails/ProgressBarDetails";
 
-interface cartProps {
-  class: string;
-  subject: string;
-  chapters: {
-    annotation: string;
-    name: string;
-    points_to_earn: number;
-    id: string;
-    topics: {
-      annotation: string;
-      name: string;
-      points_to_earn: number;
-      id: string;
-    }[];
-  }[];
-}
-
-interface progressprops {
-  progress: {
-    id: string;
-    progress: number;
-  }[];
-}
-
 function App() {
-  // const [articleData, setArticleData] = useState<cartProps>({
-  //   class: "",
-  //   subject: "",
-  //   chapters: [
-  //     {
-  //       annotation: "",
-  //       name: "",
-  //       points_to_earn: 0,
-  //       id: "",
-  //       topics: [
-  //         {
-  //           annotation: "",
-  //           name: "",
-  //           points_to_earn: 0,
-  //           id: "",
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // });
-
+  const [loading, setLoading] = useState(false);
   const chapters = useSelector((state: RootState) => state.Subject);
   const progressResultState = useSelector((state: RootState) => state.ProgressBarData);
   const dispatch = useDispatch();
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
   const fetchPatientSets = async () => {
     try {
@@ -82,8 +43,8 @@ function App() {
       <Navbar />
       <Header />
       <div className="main-scroll-section">
-        <Sidebar data={progressResultState} />
-        <MainSection data={chapters} />
+        <Sidebar data={progressResultState} loading={loading} />
+        <MainSection data={chapters} loading={loading} />
       </div>
     </>
   );

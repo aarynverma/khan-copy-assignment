@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProgressBar.scss";
 
-interface ProgressBarProps {
+export interface ProgressBarProps {
     progressPercentage: number;
 }
 
@@ -9,8 +9,8 @@ const ProgressBar: React.FunctionComponent<ProgressBarProps> = (
     props
 ): JSX.Element => {
     return (
-        <div className="progress-bar">
-            <div className="bar" style={{ width: `${props.progressPercentage}%` }} />
+        <div data-testid="progress-bar" className="progress-bar">
+            <div data-testid="bar" className="bar" style={{ width: `${props.progressPercentage}%` }} />
         </div>
     );
 };

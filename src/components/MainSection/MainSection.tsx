@@ -3,7 +3,11 @@ import { Cart } from '../Cart/Cart'
 import './MainSection.scss';
 import mainData from '../../Data/data.json';
 
-interface cartProps {
+
+interface loading {
+    loading: boolean
+}
+export interface cartProps extends loading {
     data: {
         class: string;
         subject: string;
@@ -26,10 +30,16 @@ interface cartProps {
 const MainSection: React.FunctionComponent<cartProps> = (props) => {
     return (
         <div className='mainsection'>
-            {mainData.map((cartData, id) => (
-                <Cart data={props.data.chapters[0]} name={cartData} />
 
-            ))}
+            {props.loading ?
+                <div data-testid="loader-container" className="loader-container">
+                    <div className="spinner"></div>
+                </div> :
+                <div data-testid="cart-container">
+                    {mainData.map((cartData, id) => (
+                        <Cart data={props.data.chapters[0]} name={cartData} />
+                    ))}
+                </div>}
         </div>
     )
 }
