@@ -1,45 +1,67 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import MainSection, { cartProps } from './MainSection';
+import { render } from "@testing-library/react";
+import MainSection from './MainSection';
+import { Provider } from "react-redux";
+import configureMockStore from "redux-mock-store";
 
-describe('MainSection', () => {
-    const mockProps: cartProps = {
-        loading: false,
-        data: {
-            class: 'Class 10',
-            subject: 'Mathematics',
+describe("MainSection component", () => {
+    const initialState = {
+        Subject: {
             chapters: [
                 {
-                    annotation: '',
-                    name: 'Chapter 1',
-                    points_to_earn: 100,
-                    id: 'ch1',
+                    annotation: "Chapter1",
+                    name: "Set",
+                    points_to_earn: 1000,
+                    id: "klmansfkj",
                     topics: [
                         {
-                            annotation: '',
-                            name: 'Topic 1',
-                            points_to_earn: 50,
-                            id: 't1',
+                            annotation: "",
+                            name: "Introduction to Set",
+                            points_to_earn: 100,
+                            id: "xyz"
                         },
-                    ],
-                },
-            ],
-        },
+                        {
+                            annotation: "",
+                            name: "Application of Set",
+                            points_to_earn: 150,
+                            id: "abc"
+                        },
+                        {
+                            annotation: "",
+                            name: "basic of Set",
+                            points_to_earn: 100,
+                            id: "pqr"
+                        },
+                        {
+                            annotation: "",
+                            name: "theory of Set",
+                            points_to_earn: 150,
+                            id: "lmn"
+                        }
+                    ]
+                }
+            ]
+        }, // initial state for testing
     };
+    const mockStore = configureMockStore()(initialState);
 
-    it('renders a spinner when loading', () => {
-        const props: cartProps = {
-            ...mockProps,
-            loading: true,
-        };
-        render(<MainSection {...props} />);
-        const spinner = screen.getByTestId('loader-container');
-        expect(spinner).toBeTruthy();
+    it("renders cart container when loading is false", () => {
+        const { getByTestId, getAllByTestId } = render(
+            <Provider store={mockStore}>
+                <MainSection loading={false} />
+            </Provider>
+        );
+
+        expect(getAllByTestId("cart-container")).toHaveLength(1);
     });
 
-    it('renders Cart components when not loading', () => {
-        render(<MainSection {...mockProps} />);
-        const carts = screen.getAllByTestId('cart-container');
-        expect(carts).toHaveLength(mockProps.data.chapters.length);
+    it("renders loader container when loading is true", () => {
+        const { getByTestId } = render(
+            <Provider store={mockStore}>
+                <MainSection loading={true} />
+            </Provider>
+        );
+
+        expect(getByTestId("loader-container")).toBeTruthy();
     });
 });

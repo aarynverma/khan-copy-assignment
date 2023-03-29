@@ -119,6 +119,8 @@ describe('App component', () => {
             }
 
         };
+        const setLoading = jest.fn();
+
         (fetchArticleDetails as jest.MockedFunction<typeof fetchArticleDetails>).mockResolvedValueOnce(mockSubjectData);
         (fetchProgressDetails as jest.MockedFunction<typeof fetchProgressDetails>).mockResolvedValueOnce(mockProgressData);
 
@@ -130,7 +132,7 @@ describe('App component', () => {
 
         await waitFor(() => {
             expect(store.getActions()).toEqual([setSubject(mockSubjectData)]);
+            expect(setLoading).toHaveBeenCalledWith(true);
         });
     });
 });
-

@@ -2,21 +2,16 @@ import React from "react";
 import "./Sidebar.scss";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import mainData from "../../Data/data.json";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Redux/store";
 
-interface load {
+interface progressprops {
     loading: boolean;
 }
 
-interface progressprops extends load {
-    data: {
-        progress: {
-            id: string;
-            progress: number;
-        }[];
-    };
-}
-
 const Sidebar: React.FunctionComponent<progressprops> = (props) => {
+    const progressResultState = useSelector((state: RootState) => state.ProgressBarData);
+
     return (
         <div className="sidebar">
             <div className="sidebar-section">
@@ -41,7 +36,7 @@ const Sidebar: React.FunctionComponent<progressprops> = (props) => {
                                 <span className="sidebar-content-li-description">
                                     <a href={`#${name}`}>{lesson.name}</a>
                                 </span>
-                                {props.data.progress.map((p) => {
+                                {progressResultState.progress.map((p) => {
                                     return (
                                         <>
                                             {lesson.id === p.id ? (

@@ -1,39 +1,36 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Sidebar from "./Sidebar";
+import { Provider } from "react-redux";
+import configureMockStore from "redux-mock-store";
 
-describe("Sidebar", () => {
-    const mainData = [{ id: "lesson1", name: "Lesson 1" }];
-    const progressData = {
-        progress: [
-            { id: '1', progress: 50 },
-            { id: '2', progress: 80 },
-            { id: '3', progress: 25 },
-        ]
+describe("Sidebar component", () => {
+    const initialState = {
+        ProgressBarData: {
+            progress: [{ id: 'a', progress: 30 }],
+        },
+        Subject: {},
     };
+    const mockStore = configureMockStore()(initialState);
 
-    it("renders without crashing", () => {
-        render(<Sidebar loading={false} data={progressData} />);
-    });
-
-    it("displays loader when loading prop is true", () => {
-        render(<Sidebar loading={true} data={progressData} />);
-        const loader = screen.getByTestId("loader-container");
-        expect(loader).toBeTruthy();
-    });
-
-    it("displays course summary and progress bars when loading prop is false", () => {
-        render(
-            <Sidebar loading={false} data={progressData} />
+    it("renders with correct data when loading is false", () => {
+        const { getByTestId, getAllByTestId } = render(
+            <Provider store={mockStore}>
+                <Sidebar loading={false} />
+            </Provider>
         );
-        const courseSummary = screen.getByText("Course summary");
-        expect(courseSummary).toBeTruthy();
+
+        expect(getByTestId("sidebar-section-heading")).toBeTruthy();
+        expect(getAllByTestId("li-content-bar").length).toBeGreaterThan(0);
     });
 
-    it("displays the correct number of mastery points", () => {
-        const masteryPoints = 17400;
-        render(<Sidebar loading={false} data={progressData} />);
-        const spinner = screen.getByTestId('sidebar-section-heading')
-        expect(spinner).toBeTruthy();
+    it("renders loader container when loading is true", () => {
+        const { getByTestId } = render(
+            <Provider store={mockStore}>
+                <Sidebar loading={true} />
+            </Provider>
+        );
+
+        expect(getByTestId("loader-container")).toBeTruthy();
     });
 });

@@ -1,42 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+interface topic {
+  annotation: string;
+  name: string;
+  points_to_earn: number;
+  id: string;
+}
+
+interface chapter {
+annotation: string;
+name: string;
+points_to_earn: number;
+id: string;
+topics:topic[];
+}
+
 export interface SubjectState {
-  class: string;
-  subject: string;
-  chapters: {
-    annotation: string;
-    name: string;
-    points_to_earn: number;
-    id: string;
-    topics: {
-      annotation: string;
-      name: string;
-      points_to_earn: number;
-      id: string;
-    }[];
-  }[];
+class: string;
+subject: string;
+chapters:chapter[];
 }
 
 const initialState: SubjectState = {
   class: "",
   subject: "",
-  chapters: [
-    {
-      annotation: "",
-      name: "",
-      points_to_earn: 0,
-      id: "",
-      topics: [
-        {
-          annotation: "",
-          name: "",
-          points_to_earn: 0,
-          id: "",
-        },
-      ],
-    },
-  ],
+  chapters: [],
 };
 
 export const SubjectSlice = createSlice({
