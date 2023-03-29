@@ -10,18 +10,20 @@ interface name {
     }
 }
 
+interface topic {
+    annotation: string;
+    name: string;
+    points_to_earn: number;
+    id: string;
+}
+
 export interface ChapterCardProps extends name {
     data: {
         annotation: string;
         name: string;
         points_to_earn: number;
         id: string;
-        topics: {
-            annotation: string;
-            name: string;
-            points_to_earn: number;
-            id: string;
-        }[];
+        topics: topic[];
     };
 }
 
